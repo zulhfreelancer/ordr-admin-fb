@@ -9,7 +9,7 @@ Ordr Admin Demo Using Firebase
 ### See live API while adding, editing & deleting data
 
 See here:
-https://github.com/zulhfreelancer/ordr-admin-fb
+https://magic-roa.firebaseio.com/
 
 Note: You need to login to Firebase account first. Check your email. I just sent an invite to Firebase email.
 

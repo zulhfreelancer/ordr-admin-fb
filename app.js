@@ -43,7 +43,7 @@ app.controller('addDrink', ['$scope', '$firebaseArray', function($scope, $fireba
     // ADD DRINK
     $scope.addDrink = function() {
 
-        //LISTEN FOR RETURN KEY
+        // IF THE DRINK INPUT IS NOT EMPTY, ADD THE DRINK
         if ($scope.drinkName) {
 
             //console.log("Drink name: " + $scope.drinkName);
@@ -69,18 +69,20 @@ app.controller('addDrink', ['$scope', '$firebaseArray', function($scope, $fireba
 
 app.controller('editDrink', ['$scope', "$routeParams", "$firebaseObject", "$location", function($scope, $routeParams, $firebaseObject, $location) {
 
+    // GET FIREBASE OBJECT UNIQUE ID FROM URL PARAMETER
     var urlParam = $routeParams.param;
 
-    // CREATE A FIREBASE REFERENCE
+    // CREATE A FIREBASE REFERENCE AND PASS THE PARAM
     var url = "https://magic-roa.firebaseio.com/drinks/" + urlParam;
     var ref = new Firebase(url);
 
-    // GET DRINKS AS AN ARRAY
+    // GET THE DRINK
     $scope.drinkName = $firebaseObject(ref);
 
+    // UPDATE THE DRINK
     $scope.updateDrink = function() {
 
-        //LISTEN FOR RETURN KEY
+        // IF THE DRINK INPUT IS NOT EMPTY
         if ($scope.drinkName) {
 
             $scope.drinkName.$save({
@@ -88,6 +90,7 @@ app.controller('editDrink', ['$scope', "$routeParams", "$firebaseObject", "$loca
                 qty: 'null'
             });
 
+            // REDIRECT TO ADD DRINKS AFTER SUCCESSFULLY UPDATED THE DATA
             $location.path("/add-drink").search();
 
         }
@@ -99,13 +102,13 @@ app.controller('addFood', ['$scope', '$firebaseArray', function($scope, $firebas
     // CREATE A FIREBASE REFERENCE
     var ref = new Firebase("https://magic-roa.firebaseio.com/foods/");
 
-    // GET DRINKS AS AN ARRAY
+    // GET FOODS AS AN ARRAY
     $scope.foods = $firebaseArray(ref);
 
-    // ADD DRINK
+    // ADD FOOD
     $scope.addFood = function() {
 
-        //LISTEN FOR RETURN KEY
+        // IF FOOD INPUT IS NOT EMPTY, ADD THE FOOD
         if ($scope.foodName) {
 
             //console.log("Drink name: " + $scope.drinkName);
@@ -116,13 +119,13 @@ app.controller('addFood', ['$scope', '$firebaseArray', function($scope, $firebas
                 qty: 'null'
             });
 
-            // RESET DRINK INPUT
+            // RESET FOOD INPUT
             $scope.foodName = "";
         }
 
     };
 
-    // REMOVE DRINK
+    // REMOVE FOOD
     $scope.removeFood = function(k) {
         //console.log("Drink ID: " + k);
         $scope.foods.$remove(k);
@@ -131,18 +134,20 @@ app.controller('addFood', ['$scope', '$firebaseArray', function($scope, $firebas
 
 app.controller('editFood', ['$scope', "$routeParams", "$firebaseObject", "$location", function($scope, $routeParams, $firebaseObject, $location) {
 
+    // GET FIREBASE OBJECT UNIQUE ID FROM URL PARAMETER
     var urlParam = $routeParams.param;
 
-    // CREATE A FIREBASE REFERENCE
+    // CREATE A FIREBASE REFERENCE AND PASS THE PARAM
     var url = "https://magic-roa.firebaseio.com/foods/" + urlParam;
     var ref = new Firebase(url);
 
-    // GET DRINKS AS AN ARRAY
+    // GET THE FOOD
     $scope.foodName = $firebaseObject(ref);
 
+    // UPDATE THE FOOD
     $scope.updateFood = function() {
 
-        //LISTEN FOR RETURN KEY
+        // IF THE FOOD INPUT IS NOT EMPTY
         if ($scope.foodName) {
 
             $scope.foodName.$save({
@@ -150,6 +155,7 @@ app.controller('editFood', ['$scope', "$routeParams", "$firebaseObject", "$locat
                 qty: 'null'
             });
 
+            // REDIRECT TO ADD FOODS AFTER SUCCESSFULLY UPDATED THE DATA
             $location.path("/add-food").search();
 
         }
